@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . "/vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 use App\Controllers\Pages\Home;
 use DI\Container;
@@ -11,7 +11,7 @@ $container = new Container();
 AppFactory::setContainer($container);
 
 $container->set('View', function () {
-   $view = Twig::create('templates', ['cache' => false]);
+   $view = Twig::create(__DIR__.'/../templates', ['cache' => false]);
    return $view;
 
 });
