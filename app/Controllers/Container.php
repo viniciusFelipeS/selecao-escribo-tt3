@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use DI\Container as DIContainer;
 
-abstract class Controller{
+abstract class Container{
     protected $container;
 
     public function __construct(DIContainer $container) {

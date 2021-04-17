@@ -1,8 +1,6 @@
 <?php
 
-use App\Controllers\Pages\Home;
-use Slim\App;
+use App\Controllers\Pages\HomePage;
 
-return function (App $app) {
-    $app->get('/', Home::class)->setName('home');
-};
+
+$app->get('/', HomePage::class)->setName('home');
