@@ -13,7 +13,7 @@ $app->group(
         $group->get('', App\Controllers\Action\Car\CarFindAllAction::class);
         $group->post('', App\Controllers\Action\Car\CarCreateAction::class);
         $group->get('/{car_id}', App\Controllers\Action\Car\CarFindAction::class);
-        $group->put('/{car_id}', App\Controllers\Action\Car\CarUpdateAction::class);
+        $group->patch('/{car_id}', App\Controllers\Action\Car\CarUpdateAction::class);
         $group->delete('/{car_id}', App\Controllers\Action\Car\CarDeleteAction::class);
     }
 );
