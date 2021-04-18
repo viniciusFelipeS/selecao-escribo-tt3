@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Controllers\Pages;
+namespace App\Controllers\Action;
 
 use App\Controllers\Container;
+use Slim\Psr7\Request;
+use Slim\Psr7\Response;
 
-final class HomePage extends Container
+final class HomeAction extends Container
 {
-    public function __invoke($request, $response, $ags)
+    public function __invoke(Request $request, Response $response, $ags)
     {
         return $this->container->get('view')->render($response, 'home.twig', [
             'title' => '222123131',
