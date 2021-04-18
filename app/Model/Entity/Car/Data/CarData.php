@@ -3,23 +3,33 @@
 namespace App\Model\Entity\Car\Data;
 
 use App\Model\Data\DataBase;
+use App\Model\Entity\Car\Car;
 use PDO;
 
-final class CarData
+final class CarData extends Car
 {
-    public static function insert(array $data)
+    private const DB_NAME = 'car';
+
+    public function insert(array $data)
     {
-        $data['status'] = 0;
-        return (new DataBase('car'))->insert($data);
+        $data['status'] = $this->status;
+        return (new DataBase(self::DB_NAME))->insert($data);
     }
 
-    public static function select($id = null)
+    public function select($id = null)
     {
-        return (new DataBase('car'))->select($id)->fetchAll(PDO::FETCH_ASSOC);
+        return (new DataBase(self::DB_NAME))->select($id)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function delete($id = null)
+    public function delete($id)
     {
-        return (new DataBase('car'))->delete($id);
+        $id  = 'id = ' . $id;
+        return (new DataBase(self::DB_NAME))->delete($id);
+    }
+
+    public function update($data, $id)
+    {
+        $id  = 'id = ' . $id;
+        return (new DataBase(self::DB_NAME))->update($data, $id);
     }
 }
