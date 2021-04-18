@@ -22,12 +22,6 @@ $app->setBasePath('/estribo');
 
 require_once __DIR__ . "/routes.php";
 
-
-$app->addBodyParsingMiddleware();
-$app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, true, true);
-
-
-
 
 return $app;
