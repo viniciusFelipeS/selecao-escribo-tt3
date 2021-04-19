@@ -26,5 +26,23 @@ composer install
 
 ```
 
+## 🛣️ Possiveis Rotas
+
+| Nome da Rota | Caminho  |        Request        | Response |
+|--------------|----------|:---------------------:|----------|
+| Home         |     /    |        GET POST       |   json   |
+| Pedidos      | /pedidos |        GET POST       |   json   |
+| API          |   /api   | GET POST PATCH DELETE |   json   |
+| Login        |  /login  |        GET POST       |   json   |
+| Admin        |  /admin  | GET POST PATCH DELETE |   json   |
+| LogOut       |  /logout |          POST         | Location |
+
+
+## ➕ Outros
+
+Perfil admin para acesso
+email: admin@admin
+senha: admin
+
 
 
