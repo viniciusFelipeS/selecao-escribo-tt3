@@ -1,4 +1,12 @@
 {% extends "includes/template.twig" %}
+{% block navbar %}
+	{{parent()}}
+		<ul class="navbar-nav ms-auto">
+			<li class="nav-item">
+				<a class="nav-link active" aria-current="page" href="{{url_for('signin')}}">Entrar</a>
+			</li>
+		</ul>
+{% endblock %}
 
 {% block head %}
 	{{parent()}}

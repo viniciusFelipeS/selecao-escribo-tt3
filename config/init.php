@@ -1,5 +1,6 @@
 <?php
 
+use App\Model\Session\Session;
 use DI\Container;
 use Slim\Factory\AppFactory;
 use Slim\Views\Twig;
@@ -9,11 +10,16 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 $container = new Container();
 AppFactory::setContainer($container);
+
 $container->set('view', function () {
     $view = Twig::create(__DIR__ . '/../Templates/Views/Templates', ['cache' => false]);
     return $view;
 });
 
+$container->set('session', function () {
+    $session = new Session;;
+    return $session;
+});
 
 $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));

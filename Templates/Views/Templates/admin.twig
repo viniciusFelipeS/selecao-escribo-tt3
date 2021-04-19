@@ -10,60 +10,83 @@
 {% block main %}
 
 	<div class="container-fluid my-5 pb-5">
-		<div class="container">
-			<div class="row" id="list-car">
-				<div class="col-2 ">
-					<div class="container">
-						<div class="row border border-dark rounded bg-white p-2">
-							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-car" data-bs-whatever="@mdo">+</button>
+		<div class="row" id="list-car">
+			<div class="col-lg-1">
+				<div class="container bg-white rounded p-1">
+					<nav class="nav flex-column flex-md-row">
+						{% if current_url() == url_for('admin') %}
+							<div class="nav-item m-2">
+								<a type="button" class="nav-link btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-car">
+									<i class="bi bi-plus"></i>
+								</a>
+							</div>
+						{% endif %}
+						<div class="nav-item m-2">
+							<a type="button" class="nav-link btn btn-dark" href="{{url_for('adminUser')}}">
+								<i class="bi bi-person-lines-fill"></i>
+							</a>
 						</div>
-					</div>
+						<div class="nav-item m-2">
+							<a type="button" class="nav-link btn btn-dark" href="{{url_for('admin')}}">
+								<i class="bi bi-person-lines-fill"></i>
+							</a>
+						</div>
+					</nav>
 				</div>
-				<div class="col-10">
-					<div class="container">
-						<div class="table-responsive">
-							<table class="table table-light table-striped table-sm">
-								<thead>
-									<tr>
-										<th scope="col">ID</th>
-										<th scope="col">Modelo</th>
-										<th scope="col">Preço</th>
-										<th class="text-center" scope="col">Ações</th>
-									</tr>
-								</thead>
-								<tbody id="table-car"></tbody>
-							</table>
-						</div>
+			</div>
+			<div class="col-11 text-white">
+				<h1 class="px-5">Lista total de carros</h1>
+				<div class="container">
+					<div class="table-responsive">
+						<table class="table table-light table-striped table-sm">
+							<thead>
+								<tr>
+									<th scope="col" width="40">ID</th>
+									<th scope="col" width="250">Fabricante/Modelo</th>
+									<th scope="col" width="50">Ano</th>
+									<th scope="col" width="100">Preço</th>
+									<th class="text-center" scope="col" width="50">Status</th>
+									<th class="text-center" width="100" scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody id="table-car"></tbody>
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
-	<div class="modal fade" id="add-car" tabindex="-1" aria-labelledby="add-carLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="add-carLabel">Adicionar novo carro</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<form id="form-add" action="api">
-					<div class="modal-body">
-						<div class="mb-3">
+<div class="modal fade" id="add-car" tabindex="-1" aria-labelledby="add-carLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="add-carLabel">Adicionar novo carro</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<form id="form-add" action="api" autocomplete="off">
+				<div class="modal-body">
+					<div class="row g-3">
+						<div class="col-12">
 							<label for="model-car" class="col-form-label">Modelo:</label>
 							<input name="model" type="text" class="form-control" id="model-car"/>
 						</div>
-						<div class="mb-3">
+						<div class="col">
 							<label for="price-car" class="col-form-label">Preço:</label>
-							<input name="price" class="form-control" id="price-car"/>
+							<input name="price" type="number" class="form-control" id="price-car"/>
+						</div>
+						<div class="col">
+							<label for="price-car" class="col-form-label">Ano:</label>
+							<input name="year" type="text" class="form-control" id="price-car"/>
 						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-						<button type="submit" class="btn btn-primary" >Enviar</button>
-					</div>
-				</form>
-			</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+					<button type="submit" class="btn btn-dark">Enviar</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<script src="{{api}}"></script>

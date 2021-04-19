@@ -12,7 +12,7 @@ $("#form-add").submit(function (event) {
   event.preventDefault();
   var form = $(this);
   $.post(form.attr("action"), form.serialize(), function (data) {
-    $('#add-car').modal('toggle');
+    $("#add-car").modal("hide");
     addCar(data);
   });
 });
@@ -45,24 +45,35 @@ function showCars(field) {
   let list = document.getElementById("table-car");
   let row = document.createElement("tr");
   row.setAttribute("data-id", field.id);
-  
+
   let idCar = document.createElement("th");
   idCar.setAttribute("scope", "row");
   idCar.innerHTML = field.id;
-  
+
   let modelCar = document.createElement("td");
   modelCar.innerHTML = field.model;
-  
+
+  let yearCar = document.createElement("td");
+  yearCar.innerHTML = field.year;
+
   let priceCar = document.createElement("td");
-  priceCar.innerHTML = field.price;
-  
+  priceCar.innerHTML = 'R$ '+field.price;
+
+  let statusCar = document.createElement("td");
+  statusCar.setAttribute("class", "text-center");
+  let status = field.status == true ? 'danger' : 'success';
+  statusCar.innerHTML = `<i class="bi bi-circle-fill text-${status} "></i>`;
+
+
+
   let actionCar = document.createElement("td");
   actionCar.setAttribute("class", "text-center");
-  buttonActions = ` <button class="btn btn-danger delete" data-id="${field.id}">+</button>
-  <button class="btn btn-warning" data-id="${field.id}">+</button>`;
+  buttonActions = ` 
+  <button class="btn btn-sm btn-warning" data-id="${field.id}"><i class="bi bi-pencil-square"></i></button>
+  <button class="btn btn-sm btn-danger delete" data-id="${field.id}"><i class="bi bi-trash"></i></button>`;
   actionCar.innerHTML = buttonActions;
-  
-  row.append(idCar,modelCar,priceCar,actionCar);
+
+  row.append(idCar, modelCar, yearCar, priceCar, statusCar, actionCar);
   list.appendChild(row);
 }
 

@@ -86,6 +86,7 @@ final class DataBase
          */
         $query = 'INSERT INTO ' . $this->tabela . ' (' . implode(',', $campos) . ') VALUES (' . implode(',', $valores) . ')';
 
+        
         $this->execute($query, array_values($info));
         return $this->conexao->lastInsertId();
     }
@@ -112,7 +113,6 @@ final class DataBase
          * Monta a query
          */
         $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' . $where . ' ' . $order . ' ' . $limit;
-
         return $this->execute($query);
     }
 
