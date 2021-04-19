@@ -7,8 +7,10 @@ $app->get('/logout', App\Controllers\Action\User\UserLogoutAction::class)->setNa
 
 
 $app->get('/carros', App\Controllers\Action\Car\CarListAction::class)->setName('carros');
-$app->post('/carros', App\Controllers\Action\Rent\RentCreateAction::class)->setName('alugar');
+$app->post('/carros', App\Controllers\Action\Rent\RentCreateAction::class);
 
+$app->get('/pedidos', App\Controllers\Action\Rent\RentListAllAction::class)->setName('pedidos');
+$app->post('/pedidos', App\Controllers\Action\Rent\RentDissolveAction::class)->setName('pedidos');
 
 
 $app->group(

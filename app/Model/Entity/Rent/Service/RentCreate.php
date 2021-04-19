@@ -29,10 +29,13 @@ final class RentCreate  extends RentData
         ];
 
         $this->rentData->insert($data);
-        
-        $dataChange = ['status' => '1'];
 
-        $this->changeStatusCar($dataChange,$data['id_car']);
+        $dataChange = [
+            'status' => '1',
+            'rent' => '1'
+        ];
+
+        $this->changeStatusCar($dataChange, $data['id_car']);
     }
 
     private function changeStatusCar($data, $carId)
@@ -42,7 +45,7 @@ final class RentCreate  extends RentData
 
     private function checkUserNull($user)
     {
-        if (!Session::isLogged()) {
+        if (!Session::isLogged('user')) {
             throw new ValidationException('signin');
         }
     }

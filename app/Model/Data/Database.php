@@ -99,7 +99,7 @@ final class DataBase
      * @param  string $limit
      * @return PDOStatement
      */
-    public function select($where = null, $order = null, $limit = null, $campos = '*', $innerJoin = null)
+    public function select($where = null, $order = null, $limit = null, $campos = '*', $innerJoin = null, $on = null)
     {
         /**
          * Dados da query
@@ -108,11 +108,13 @@ final class DataBase
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
         $innerJoin = strlen($innerJoin) ? 'INNER JOIN ' . $innerJoin : '';
+        $on = strlen($on) ? 'ON ' . $on.'' : '';
 
         /**
          * Monta a query
          */
-        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' . $where . ' ' . $order . ' ' . $limit;
+        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' .$on.' '. $where . ' ' . $order . ' ' . $limit;
+
         return $this->execute($query);
     }
 
@@ -135,7 +137,6 @@ final class DataBase
          * Monta a query
          */
         $query = 'UPDATE ' . $this->tabela . ' SET ' . implode(" = ?, ", $campos) . ' = ? WHERE ' . $this->tabela . '.' . $where;
-
         $this->execute($query, array_values($alterar));
         return true;
     }
@@ -152,6 +153,7 @@ final class DataBase
          * Monta da query
          */
         $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;  
+        
         $this->execute($query);
         return true;
     }

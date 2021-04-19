@@ -16,7 +16,6 @@ final class CarUpdateAction
     }
     public function __invoke(Request $request, Response $response, $args)
     {
-        
         $data = $request->getParsedBody();
         $carId = $args['car_id'];
         $result = $this->car->update($data, $carId);

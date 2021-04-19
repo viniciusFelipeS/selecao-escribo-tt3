@@ -8,7 +8,7 @@
 			</a>
 			<ul class="dropdown-menu">
 				<li class="nav-item ">
-					<a class="nav-link text-dark" aria-current="page" href="{{url_for('pedidos')}}">Pedidos</a>
+					<a class="nav-link text-dark" aria-current="page" href="{{url_for('home')}}">Pedidos</a>
 				</li>
 				<li class="nav-item ">
 					<a class="text-danger nav-link " aria-current="page" href="{{url_for('logout')}}">Sair</a>
@@ -35,60 +35,70 @@
 
 	<div class="container-fluid my-5 pb-5">
 		<div class="container">
-			<div class="row g-3" id="list-car">
-				{% if cars %}
-					{% for car in cars %}
-						<div class="col-12 col-sm-5 col-lg-3">
-							<div class="card border-white" style="width: 15rem;">
-								<img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/03/dscf5856.dng_-e1588959378786.jpg?quality=70&strip=info" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">{{car.model}}</h5>
-									<p class="card-text">
-										<b>R$
-										</b>
-										{{car.price}}</p>
-									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rent-car{{car.id}}">
-										Alugar
+			{% if rents %}
+				{% for rent in rents %}
+					<div class="row my-5 justify-content-center" id="list-car">
+						<div class="col-auto ">
+							<div class="card text-center" style="width: 18rem">
+								<div class="card-body">	
+									<div class="row g-1">
+										<div class="col-12 text-start">
+											<b>
+												<high class="card-title">Pedido ID #{{rent.id}}</high>
+											</b>
+										</div>
+										<div class="col-12 text-start">
+											<p class="card-title">Data pedido:
+												{{rent.date}}</p>
+										</div>
+										<div class="col-12 pb-1 text-start">
+											<p class="card-text">Status:
+												{{rent.status}}
+											</p>
+										</div>
+									</div>
+									<button type="button" class="btn text-light" data-bs-toggle="modal" data-bs-target="#rent-id{{rent.id}}" style="background-color: #21081a;">
+										Detalhes
 									</button>
 								</div>
 							</div>
 						</div>
-						<div class="modal fade" id="rent-car{{car.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rent-car{{car.id}}Label" aria-hidden="true">
+						<div class="modal fade" id="rent-id{{rent.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rent-id{{rent.id}}Label" aria-hidden="true">
 							<div class="modal-dialog">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="rent-car{{car.id}}Label">Continuar com o Aluguel</h5>
+										<h5 class="modal-title" id="rent-car{{rent.id}}Label">Continuar com o Aluguel</h5>
 										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-									<form action="{{url_for('carros')}}" method="post" autocomplete="off">
+									<form action="{{url_for('pedidos')}}" method="post" autocomplete="off">
 										<div class="modal-body">
 											<div class="row g-3">
 												<div class="col-12">
 													<label for="model-car" class="col-form-label">Modelo:</label>
-													<input name="model" type="text" class="form-control" id="model-car" value="{{car.model}}" disabled/>
+													<input name="model" type="text" class="form-control" id="model-car" value="{{	rent.carmodel}}" disabled/>
 												</div>
 												<div class="col">
 													<label for="price-car" class="col-form-label">Preço:</label>
-													<input name="price" type="number" class="form-control" id="price-car" value="{{car.price}}" disabled/>
+													<input name="price" type="number" class="form-control" id="price-car" value="{{rent.carprice}}" disabled/>
 												</div>
 												<div class="col">
 													<label for="price-car" class="col-form-label">Ano:</label>
-													<input name="year" type="text" class="form-control" id="price-car" value="{{car.year}}" disabled/>
+													<input name="year" type="text" class="form-control" id="price-car" value="{{rent.caryear}}" disabled/>
 												</div>
 											</div>
 										</div>
 										<div class="modal-footer">
 											<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
-											<button type="submit" name="id" value="{{car.id}}" class="btn btn-dark">Sim</button>
+											<button type="submit" name="id" value="{{rent.id}},{{rent.id_car}}" class="btn btn-dark">Devolver</button>
 										</div>
 									</form>
 								</div>
 							</div>
 						</div>
-					{% endfor %}
+					</div>
+				{% endfor %}
 
-				{% endif %}
-			</div>
+			{% endif %}
 		</div>
 	</div>
 {% endblock %}
