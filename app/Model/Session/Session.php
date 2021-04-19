@@ -39,10 +39,10 @@ final class Session
         session_destroy();
     }
 
-    public static function isLogged()
+    public static function isLogged($name)
     {
        self::start();
-        if (isset($_SESSION['user'])) {
+        if (isset($_SESSION[$name])) {
             return true;
         }
         return false;

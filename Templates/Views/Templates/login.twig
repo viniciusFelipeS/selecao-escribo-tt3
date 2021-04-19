@@ -5,7 +5,8 @@
 	{{parent()}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
-{% block title %}{{title}}
+{% block title %}
+	{{title}}
 {% endblock %}
 
 {% block main %}
@@ -15,9 +16,9 @@
 				<div class="card bg-light shadow border-0">
 					<div class="card-body px-lg-5 py-lg-5">
 						<div class="text-dark text-center mt-0 mb-4">
-							<legend>Preencha os seus dados</legend>
+							<legend>{{title1}}</legend>
 						</div>
-						<form action="" method="post" autocomplete="off" id="form-login">
+						<form action="" method="post" autocomplete="off" id="form-login{{admin}}">
 
 							{% if login == url_for('signin') %}
 
@@ -58,14 +59,19 @@
 								<div class="col-6">
 									<a class="text-dark text-decoration-none font-weight-bold" href="{{url_for('home')}}">Voltar</a>
 								</div>
-								<div class="col-6 text-end">
-									<span class="text-muted">
-										<a class="text-dark text-decoration-none text-end" href="{{login}}">Clique aqui
-										</a>
-										para
-										{{action}}!
-									</span>
-								</div>
+								{% if title1 != 'Admin' %}
+									<div class="col-6 text-end">
+										<span class="text-muted">
+
+
+											<a class="text-dark text-decoration-none text-end" href="{{login}}">Clique aqui
+											</a>
+											para
+											{{action}}!
+										</span>
+									</div>
+								{% endif %}
+
 							</div>
 						</form>
 					</div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controllers\Action\User;
+namespace App\Controllers\Action\Admin;
 
 use App\Controllers\Controller\Controller;
 use App\Model\Entity\User\Service\UserFind;
@@ -9,7 +9,7 @@ use Selective\Validation\Exception\ValidationException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
-final class UserFindAction
+final class AdminLoginFindAction
 {
     private UserFind $user;
 
@@ -20,7 +20,7 @@ final class UserFindAction
     public function __invoke(Request $request, Response $response, $args)
     {
         $data = $request->getParsedBody();
-        $data['role'] = 0;
+        $data['role'] = 1;
         try {
             $result = $this->user->find($data);
         } catch (ValidationException $e) {
@@ -31,7 +31,7 @@ final class UserFindAction
 
         $response =  $response->withHeader('Content-Type', 'application/json')->withStatus(201);
         $response->getBody()->write(json_encode($result));
-        Session::set('user',$result);
+        Session::set('admin',$result);
         return $response;
     }
 

@@ -30,7 +30,6 @@ final class UserFind extends UserData
         return $user;
     }
 
-
     private function checkParams($data)
     {
         if (empty($data['email']) || empty($data['pass'])) {
@@ -39,14 +38,26 @@ final class UserFind extends UserData
     }
 
     private function checkSameData($data){
-        $emailSearch = 'email = "' . $data['email'] . '"';
-
+        $emailSearch = 'email = "' . $data['email'] . '" and role = '.$data['role'];
         $user = $this->userData->select($emailSearch);
+
+        $this->checkExist($user);
+
+        if (!$user instanceof User) {
+            throw new ValidationException('Usuário ou senha incorreta!');
+        };
+
         if (!password_verify($data['pass'], $user->pass) || $data['email'] != $user->email){
             throw new ValidationException('Usuário ou senha incorreta!');
         }
         
         $user->pass = '';
         return $user;
+    }
+
+    private function checkExist($user){
+        if (!$user instanceof User) {
+            throw new ValidationException('Usuário ou senha incorreta!');
+        };
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers\Action\User;
 
 use App\Model\Entity\User\Service\UserCreate;
+use App\Model\Session\Session;
 use Selective\Validation\Exception\ValidationException;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
@@ -30,6 +31,7 @@ final class UserCreateAction
         
         $response =  $response->withStatus(201);
         $response->getBody()->write($result);
+        Session::set('user',$result);
         return $response;
     }   
 }

@@ -12,7 +12,7 @@ final class UserSignupAction extends Controller
     public function __invoke(Request $request, Response $response, $args)
     {    
         $routeParser = \Slim\Routing\RouteContext::fromRequest($request)->getRouteParser();
-        if (Session::isLogged()){
+        if (Session::isLogged('user')){
             $response = $response->withHeader('location', $routeParser->urlFor('home'))->withStatus(303);
             return $response;
         }

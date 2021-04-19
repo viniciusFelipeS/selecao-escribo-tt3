@@ -24,8 +24,9 @@ $app->group(
 $app->group(
     '/admin',
     function (RouteCollectorProxy $group) {
-        $group->get('', App\Controllers\Action\Admin\AdminAction::class)->setName('admin');;
-        $group->get('/user', App\Controllers\Action\Admin\AdminAction::class)->setName('adminUser');
+        $group->get('', App\Controllers\Action\Admin\AdminAction::class)->setName('admin');
+        $group->get('/login', App\Controllers\Action\Admin\AdminLoginAction::class)->setName('adminLogin');;
+        $group->post('/login', App\Controllers\Action\Admin\AdminLoginFindAction::class)->setName('adminLogin');;
     }
 );  
 
