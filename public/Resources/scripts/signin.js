@@ -6,7 +6,7 @@ $("#form-login").submit(function (event) {
     type: "POST",
     url: form.attr("action"),
     data: form.serialize(),
-    success: (data) => {
+    success: () => {
       window.location = '/estribo/';
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -24,7 +24,7 @@ $("#form-login-admin").submit(function (event) {
     type: "POST",
     url: form.attr("action"),
     data: form.serialize(),
-    success: (data) => {
+    success: () => {
       window.location = '/estribo/admin';
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
