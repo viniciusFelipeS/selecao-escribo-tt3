@@ -24,7 +24,7 @@ final class CarData extends Car
 
     public function select($id = null)
     {
-        return $this->CarDataBase->select($id)->fetchAll(PDO::FETCH_ASSOC);
+        return $this->CarDataBase->select($id)->fetchAll(PDO::FETCH_CLASS, parent::class);
     }
 
     public function delete($id)

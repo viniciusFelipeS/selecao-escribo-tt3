@@ -10,7 +10,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 $container = new Container();
 AppFactory::setContainer($container);
 $container->set('view', function () {
-    $view = Twig::create(__DIR__ . '/../templates', ['cache' => false]);
+    $view = Twig::create(__DIR__ . '/../Templates/Views/Templates', ['cache' => false]);
     return $view;
 });
 

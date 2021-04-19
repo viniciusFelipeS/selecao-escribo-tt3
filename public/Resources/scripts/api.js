@@ -8,10 +8,11 @@ $(document).ready(function () {
 });
 
 //POST
-$("#form1").submit(function (event) {
+$("#form-add").submit(function (event) {
   event.preventDefault();
   var form = $(this);
   $.post(form.attr("action"), form.serialize(), function (data) {
+    $('#add-car').modal('toggle');
     addCar(data);
   });
 });
@@ -41,23 +42,28 @@ $(document).on("submit", ".form-update", function (event) {
 });
 
 function showCars(field) {
-  let html = `
-  <form action="api/${field.id}" class="form-update">
-  <input name="model" placeholder="${field.model}" />
-  <input name="price" placeholder="${field.price}" />
-  <button type="submit">update</button>
-</form>
-`;
-  let li = document.createElement("li");
-  let btn = document.createElement("button");
-  li.appendChild(document.createTextNode(field.id));
-  li.innerHTML = html;
-  btn.innerHTML = field.id;
-  btn.setAttribute("class", `delete`);
-  btn.setAttribute("data-id", field.id);
-  document.getElementById("teste").appendChild(li);
-  li.appendChild(btn);
-  li.setAttribute("data-id", field.id);
+  let list = document.getElementById("table-car");
+  let row = document.createElement("tr");
+  row.setAttribute("data-id", field.id);
+  
+  let idCar = document.createElement("th");
+  idCar.setAttribute("scope", "row");
+  idCar.innerHTML = field.id;
+  
+  let modelCar = document.createElement("td");
+  modelCar.innerHTML = field.model;
+  
+  let priceCar = document.createElement("td");
+  priceCar.innerHTML = field.price;
+  
+  let actionCar = document.createElement("td");
+  actionCar.setAttribute("class", "text-center");
+  buttonActions = ` <button class="btn btn-danger delete" data-id="${field.id}">+</button>
+  <button class="btn btn-warning" data-id="${field.id}">+</button>`;
+  actionCar.innerHTML = buttonActions;
+  
+  row.append(idCar,modelCar,priceCar,actionCar);
+  list.appendChild(row);
 }
 
 function addCar(carId) {
@@ -69,7 +75,7 @@ function addCar(carId) {
 }
 
 function removeCar(carId) {
-  $("li").filter(function () {
+  $("tr").filter(function () {
     if ($(this).attr("data-id") == carId) {
       $(this).remove();
     }
