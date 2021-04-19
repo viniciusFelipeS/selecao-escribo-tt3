@@ -16,11 +16,6 @@ $container->set('view', function () {
     return $view;
 });
 
-$container->set('session', function () {
-    $session = new Session;;
-    return $session;
-});
-
 $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));
 $app->setBasePath('/estribo');
