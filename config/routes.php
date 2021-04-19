@@ -3,8 +3,12 @@
 use Slim\Routing\RouteCollectorProxy;
 
 $app->get('/', App\Controllers\Action\Home\HomeAction::class)->setName('home');
-$app->get('/carros', App\Controllers\Action\Car\CarListAction::class)->setName('carros');
 $app->get('/logout', App\Controllers\Action\User\UserLogoutAction::class)->setName('logout');
+
+
+$app->get('/carros', App\Controllers\Action\Car\CarListAction::class)->setName('carros');
+$app->post('/carros', App\Controllers\Action\Rent\RentCreateAction::class)->setName('alugar');
+
 
 
 $app->group(

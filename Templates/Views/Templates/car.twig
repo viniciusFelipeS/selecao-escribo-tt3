@@ -44,7 +44,41 @@
 										<b>R$
 										</b>
 										{{car.price}}</p>
-									<a href="#" class="btn btn-dark">Alugar</a>
+									<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rent-car{{car.id}}">
+										Alugar
+									</button>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="rent-car{{car.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="rent-car{{car.id}}Label" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="rent-car{{car.id}}Label">Continuar com o Aluguel</h5>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<form action="{{url_for('carros')}}" method="post" autocomplete="off">
+										<div class="modal-body">
+											<div class="row g-3">
+												<div class="col-12">
+													<label for="model-car" class="col-form-label">Modelo:</label>
+													<input name="model" type="text" class="form-control" id="model-car" value="{{car.model}}" disabled/>
+												</div>
+												<div class="col">
+													<label for="price-car" class="col-form-label">Preço:</label>
+													<input name="price" type="number" class="form-control" id="price-car" value="{{car.price}}" disabled/>
+												</div>
+												<div class="col">
+													<label for="price-car" class="col-form-label">Ano:</label>
+													<input name="year" type="text" class="form-control" id="price-car" value="{{car.year}}" disabled/>
+												</div>
+											</div>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Cancelar</button>
+											<button type="submit" name="id" value="{{car.id}}" class="btn btn-dark">Sim</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>

@@ -10,7 +10,6 @@ final class AdminAction extends Controller
 {
     public function __invoke(Request $request, Response $response, $args)
     {    
-        $this->controller->get('session')->get();
         return $this->controller->get('view')->render($response, 'admin.twig', [
             'api' => 'Resources/scripts/api.js',
         ]); 
