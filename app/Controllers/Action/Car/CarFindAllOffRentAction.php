@@ -6,7 +6,7 @@ use App\Model\Entity\Car\Data\CarData;
 use Slim\Psr7\Request;
 use Slim\Psr7\Response;
 
-final class CarUpdateAction
+final class CarFindAllOffRentAction
 {
     private CarData $car;
 
@@ -16,11 +16,9 @@ final class CarUpdateAction
     }
     public function __invoke(Request $request, Response $response, $args)
     {
-        
-        $data = $request->getParsedBody();
-        $carId = $args['car_id'];
-        $result = $this->car->update($data, $carId);
-        $response->getBody()->write($carId);
-        return $response;
+        $offRent = "status = 0";
+        $data = $this->car->select($offRent);
+        $response->getBody()->write(json_encode($data));
+        return $response->withHeader('Content-Type', 'application/json');
     }
 }

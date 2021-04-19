@@ -11,7 +11,7 @@ final class CarListAction extends Controller
 {
     public function __invoke(Request $request, Response $response, $args)
     {    
-        $data = file_get_contents('http://localhost/estribo/api');
+        $data = file_get_contents('http://localhost/estribo/api/rent');
         $data = json_decode($data);
         return $this->controller->get('view')->render($response, 'car.twig', [
             'api' => 'Resources/scripts/api.js',

@@ -21,7 +21,7 @@ class UserData extends User
         return $this->userDataBase->insert($data);
     }
 
-    public function select($email)
+    public function select($email = null)
     {
         return $this->userDataBase->select($email)->fetchObject(parent::class);
     }

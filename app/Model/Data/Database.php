@@ -152,7 +152,6 @@ final class DataBase
          * Monta da query
          */
         $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;  
-        
         $this->execute($query);
         return true;
     }
