@@ -70,7 +70,7 @@ function showCars(field) {
   let statusCar = document.createElement("td");
   statusCar.setAttribute("class", "text-center");
   let statusColor = field.status == true ? "danger" : "success";
-  let statusShow = field.status == true ? "disabled" : "";
+  let statusShow = field.rent == true ? "disabled" : "";
   statusCar.innerHTML = `<i class="bi bi-circle-fill text-${statusColor} "></i>`;
 
   let actionCar = document.createElement("td");
