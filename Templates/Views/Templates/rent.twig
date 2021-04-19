@@ -40,7 +40,7 @@
 					<div class="row my-5 justify-content-center" id="list-car">
 						<div class="col-auto ">
 							<div class="card text-center" style="width: 18rem">
-								<div class="card-body">	
+								<div class="card-body">
 									<div class="row g-1">
 										<div class="col-12 text-start">
 											<b>
@@ -52,8 +52,13 @@
 												{{rent.date}}</p>
 										</div>
 										<div class="col-12 pb-1 text-start">
-											<p class="card-text">Status:
-												{{rent.status}}
+											<p class="card-text mb-2">Status:
+
+												{% if rent.status == 1 %}
+													<span class="bg-warning rounded p-1">Alugado</span>
+												{% else %}
+													<span class="bg-success rounded p-1">Devolvido</span>
+												{% endif %}
 											</p>
 										</div>
 									</div>
@@ -75,7 +80,7 @@
 											<div class="row g-3">
 												<div class="col-12">
 													<label for="model-car" class="col-form-label">Modelo:</label>
-													<input name="model" type="text" class="form-control" id="model-car" value="{{	rent.carmodel}}" disabled/>
+													<input name="model" type="text" class="form-control" id="model-car" value="{{ rent.carmodel}}" disabled/>
 												</div>
 												<div class="col">
 													<label for="price-car" class="col-form-label">Preço:</label>

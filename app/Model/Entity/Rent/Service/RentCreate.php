@@ -4,6 +4,7 @@ namespace App\Model\Entity\Rent\Service;
 
 use App\Model\Entity\Car\Data\CarData;
 use App\Model\Entity\Rent\Data\RentData;
+use App\Model\Entity\User\User;
 use App\Model\Session\Session;
 use Selective\Validation\Exception\ValidationException;
 
@@ -24,7 +25,7 @@ final class RentCreate  extends RentData
         $this->checkUserNull($user);
 
         $data = [
-            'id_user' => $user->id,
+            'id_user' => $user instanceof User ? $user->id : $user,
             'id_car' => $data,
         ];
 

@@ -3,6 +3,7 @@
 namespace App\Controllers\Action\Rent;
 
 use App\Model\Entity\Rent\Service\RentCreate;
+use App\Model\Entity\User\User;
 use App\Model\Session\Session;
 use Selective\Validation\Exception\ValidationException;
 use Slim\Psr7\Request;
@@ -21,6 +22,7 @@ final class RentCreateAction
     {
         $routeParser = \Slim\Routing\RouteContext::fromRequest($request)->getRouteParser();
         $user = Session::get('user');
+        $user = $user instanceof User ? $user->id : $user;
         $data = $request->getParsedBody()['id'];
         try {
             $this->rent->create($data, $user);
