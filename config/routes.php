@@ -2,12 +2,10 @@
 
 use Slim\Routing\RouteCollectorProxy;
 
-$app->get('/', App\Controllers\Action\Home\HomeAction::class)->setName('home');
+$app->get('/', App\Controllers\Action\Car\CarListAction::class)->setName('home');
+$app->post('/', App\Controllers\Action\Rent\RentCreateAction::class);
 $app->get('/logout', App\Controllers\Action\User\UserLogoutAction::class)->setName('logout');
 
-
-$app->get('/carros', App\Controllers\Action\Car\CarListAction::class)->setName('carros');
-$app->post('/carros', App\Controllers\Action\Rent\RentCreateAction::class);
 
 $app->get('/pedidos', App\Controllers\Action\Rent\RentListAllAction::class)->setName('pedidos');
 $app->post('/pedidos', App\Controllers\Action\Rent\RentDissolveAction::class)->setName('pedidos');
