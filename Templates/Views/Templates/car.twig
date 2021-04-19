@@ -1,11 +1,24 @@
 {% extends "includes/template.twig" %}
 {% block navbar %}
 	{{parent()}}
+	{% if user %}
+		<div class="btn-group dropstart ms-auto">
+			<a type="button" class="text-decoration-none text-white h3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+				<i class="bi bi-person-circle"></i>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="nav-item ">
+					<a class="text-danger nav-link " aria-current="page" href="{{url_for('logout')}}">Sair</a>
+				</li>
+			</ul>
+		</div>
+	{% else %}
 		<ul class="navbar-nav ms-auto">
 			<li class="nav-item">
 				<a class="nav-link active" aria-current="page" href="{{url_for('signin')}}">Entrar</a>
 			</li>
 		</ul>
+	{% endif %}
 {% endblock %}
 
 {% block head %}
