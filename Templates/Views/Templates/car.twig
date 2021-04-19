@@ -1,0 +1,36 @@
+{% extends "includes/template.twig" %}
+
+{% block head %}
+	{{parent()}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+{% block title %}
+	Lista
+{% endblock %}
+{% block main %}
+
+	<div class="container-fluid my-5 pb-5">
+		<div class="container">
+			<div class="row g-3" id="list-car">
+				{% if cars %}
+					{% for car in cars %}
+						<div class="col-12 col-sm-5 col-lg-3">
+							<div class="card border-white" style="width: 15rem;">
+								<img src="https://quatrorodas.abril.com.br/wp-content/uploads/2020/03/dscf5856.dng_-e1588959378786.jpg?quality=70&strip=info" class="card-img-top" alt="...">
+								<div class="card-body">
+									<h5 class="card-title">{{car.model}}</h5>
+									<p class="card-text">
+										<b>R$
+										</b>
+										{{car.price}}</p>
+									<a href="#" class="btn btn-dark">Alugar</a>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+
+				{% endif %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "includes/template.twig" %}
+
+{% block head %}
+	{{parent()}}
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+{% block title %}
+	Lista
+{% endblock %}
+{% block main %}
+
+	<div class="container-fluid my-5 pb-5">
+		<div class="container">
+			<div class="row" id="list-car">
+				<div class="col-2 ">
+					<div class="container">
+						<div class="row border border-dark rounded bg-white p-2">
+							<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add-car" data-bs-whatever="@mdo">+</button>
+						</div>
+					</div>
+				</div>
+				<div class="col-10">
+					<div class="container">
+						<div class="table-responsive">
+							<table class="table table-light table-striped table-sm">
+								<thead>
+									<tr>
+										<th scope="col">ID</th>
+										<th scope="col">Modelo</th>
+										<th scope="col">Preço</th>
+										<th class="text-center" scope="col">Ações</th>
+									</tr>
+								</thead>
+								<tbody id="table-car"></tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="add-car" tabindex="-1" aria-labelledby="add-carLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="add-carLabel">Adicionar novo carro</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<form id="form-add" action="api">
+					<div class="modal-body">
+						<div class="mb-3">
+							<label for="model-car" class="col-form-label">Modelo:</label>
+							<input name="model" type="text" class="form-control" id="model-car"/>
+						</div>
+						<div class="mb-3">
+							<label for="price-car" class="col-form-label">Preço:</label>
+							<input name="price" class="form-control" id="price-car"/>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-primary" >Enviar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script src="{{api}}"></script>
+{% endblock %}
+{% block footer %}
+	{{parent()}}
+{% endblock %}
