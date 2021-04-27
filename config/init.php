@@ -8,6 +8,10 @@ use Slim\Views\TwigMiddleware;
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use App\Model\Common\Environment;
+Environment::load(__DIR__.'/../');
+
+
 $container = new Container();
 AppFactory::setContainer($container);
 
@@ -24,6 +28,6 @@ require_once __DIR__ . "/routes.php";
 
 $app->addBodyParsingMiddleware();
 $app->addRoutingMiddleware();
-$app->addErrorMiddleware(true, true, true);
+$app->addErrorMiddleware(false, true, true);
 
 return $app;
