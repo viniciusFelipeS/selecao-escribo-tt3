@@ -14,16 +14,9 @@
 			<div class="col-lg-1">
 				<div class="container bg-white rounded p-1">
 					<nav class="nav flex-column flex-md-row">
-						{% if current_url() == url_for('admin') %}
-							<div class="nav-item m-2">
-								<a type="button" class="nav-link btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-car">
-									<i class="bi bi-plus"></i>
-								</a>
-							</div>
-						{% endif %}
 						<div class="nav-item m-2">
-							<a type="button" class="nav-link btn btn-dark" href="">
-								<i class="bi bi-person-lines-fill"></i>
+							<a type="button" class="nav-link btn btn-dark" data-bs-toggle="modal" data-bs-target="#add-car">
+								<i class="bi bi-plus"></i>
 							</a>
 						</div>
 						<div class="nav-item m-2">
