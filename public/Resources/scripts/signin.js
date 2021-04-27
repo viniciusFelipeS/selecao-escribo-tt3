@@ -7,7 +7,7 @@ $("#form-login").submit(function (event) {
     url: form.attr("action"),
     data: form.serialize(),
     success: () => {
-      window.location = '/estribo/';
+      window.location = '';
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
       $(".modal-title").html("Error");
@@ -25,7 +25,7 @@ $("#form-login-admin").submit(function (event) {
     url: form.attr("action"),
     data: form.serialize(),
     success: () => {
-      window.location = '/estribo/admin';
+      window.location = '';
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
       $(".modal-title").html("Error");

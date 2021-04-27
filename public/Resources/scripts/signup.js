@@ -7,7 +7,7 @@ $("#form-login").submit(function (event) {
     url: form.attr("action"),
     data: form.serialize(),
     success: (data) => {
-      window.location = "/estribo/";
+      window.location = '';
     },
     error: function (XMLHttpRequest, textStatus, errorThrown) {
       $(".modal-title").html("Error");
