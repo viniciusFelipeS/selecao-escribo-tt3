@@ -22,7 +22,7 @@ $container->set('view', function () {
 
 $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));
-$app->setBasePath('/estribo');
+$app->setBasePath('/'.getenv('URL_PATH'));
 
 require_once __DIR__ . "/routes.php";
 

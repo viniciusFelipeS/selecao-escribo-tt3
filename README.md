@@ -6,25 +6,26 @@ Implementar sistema CRUD de aluguel de veiculos com Slim Framework
 
 ## 👷 Como rodar
 
-### Clonando repositório
 ```bash
-# Clone o repositório
+#Instale o composer
+https://getcomposer.org
+
+#Utilizando o XAMPP, clone o repositório na pasta \xampp\htdocs
 git clone https://github.com/viniciusFelipeS/selecao-estribo-3
 
 #Baixe as dependências
-
 composer install
 
 #Importe o banco de dados localizado na pasta sql
-#Configure a conexão com o Banco de dados com as definições do seu sistema
-#1. Acesse a o arquivo app/Model/Data/DataBase.php
-#2. Mude as cofigurações de Banco de Dados localizado naa linha 45
-#Conteudo: $this->conexao = new PDO("mysql:host=localhost;dbname=carro_facil","root","");
+#Configure a conexão com o Banco de dados com as definições do seu sistema localizado no arquivo .env
+DB_NAME...
 
+#Altere o path do site para o nome da pasta principal no arquivo .env
+URL_PATH
 
-#Utilize servidores XAMPP ou WAMP para para hostear o sistema
-
+#Acesse localhost/pathDoSite para iniciar a aplicação
 ```
+
 
 ## 🛣️ Possiveis Rotas
 
