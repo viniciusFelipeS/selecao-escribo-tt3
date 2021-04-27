@@ -18,6 +18,7 @@ final class UserSignupAction extends Controller
         }
         return $this->controller->get('view')->render($response, 'login.twig', [
             'title'  => 'Cadastrar',
+            'title1' => 'Preencha seus dados',
             'login'  => $routeParser->urlFor('signin'),
             'action' => 'Entrar',
             'api'    => '../Resources/scripts/signup.js',
