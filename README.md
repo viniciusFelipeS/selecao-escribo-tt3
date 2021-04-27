@@ -12,7 +12,7 @@ https://getcomposer.org
 
 #Utilizando o XAMPP, clone o repositório na pasta \xampp\htdocs
 git clone https://github.com/viniciusFelipeS/selecao-escribo-tt3
-cd selecao-escribo-3
+cd selecao-escribo-tt3
 
 #Baixe as dependências
 composer install
