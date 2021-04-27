@@ -1,5 +1,12 @@
 {% extends "includes/template.twig" %}
-
+{% block navbar %}
+	{{parent()}}
+		<ul class="navbar-nav ms-auto">
+			<li class="nav-item">
+				<a class="btn btn-danger" aria-current="page" href="{{url_for('logoutAdmin')}}">Sair</a>
+			</li>
+		</ul>
+{% endblock %}
 {% block head %}
 	{{parent()}}
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
