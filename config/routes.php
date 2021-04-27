@@ -36,7 +36,7 @@ $app->group(
     function (RouteCollectorProxy $group) {
         $group->get('', App\Controllers\Action\Car\CarFindAllAction::class)->setName('api');
         $group->post('', App\Controllers\Action\Car\CarCreateAction::class);
-        $group->get('/rent', App\Controllers\Action\Car\CarFindAllOffRentAction::class);
+        $group->get('/rent', App\Controllers\Action\Car\CarFindAllOffRentAction::class)->setName('rent');
         $group->get('/{car_id}', App\Controllers\Action\Car\CarFindAction::class);
         $group->patch('/{car_id}', App\Controllers\Action\Car\CarUpdateAction::class);
         $group->delete('/{car_id}', App\Controllers\Action\Car\CarDeleteAction::class);
