@@ -42,7 +42,11 @@ final class DataBase
     private function setConexao()
     {
         try {
-            $this->conexao = new PDO("mysql:host=localhost;dbname=carro_facil","root","");
+            $this->conexao = new PDO(
+                "mysql:host=" . getenv('DB_HOST') . ";dbname=" . getenv('DB_NAME'),
+                getenv('DB_USER'),
+                getenv('DB_PASS')
+            );
             $this->conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
             die('ERRO' . $e->getMessage());
@@ -86,7 +90,7 @@ final class DataBase
          */
         $query = 'INSERT INTO ' . $this->tabela . ' (' . implode(',', $campos) . ') VALUES (' . implode(',', $valores) . ')';
 
-        
+
         $this->execute($query, array_values($info));
         return $this->conexao->lastInsertId();
     }
@@ -108,12 +112,12 @@ final class DataBase
         $order = strlen($order) ? 'ORDER BY ' . $order : '';
         $limit = strlen($limit) ? 'LIMIT ' . $limit : '';
         $innerJoin = strlen($innerJoin) ? 'INNER JOIN ' . $innerJoin : '';
-        $on = strlen($on) ? 'ON ' . $on.'' : '';
+        $on = strlen($on) ? 'ON ' . $on . '' : '';
 
         /**
          * Monta a query
          */
-        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' .$on.' '. $where . ' ' . $order . ' ' . $limit;
+        $query = 'SELECT ' . $campos . ' FROM ' . $this->tabela . ' ' . $innerJoin . ' ' . $on . ' ' . $where . ' ' . $order . ' ' . $limit;
 
         return $this->execute($query);
     }
@@ -152,8 +156,8 @@ final class DataBase
         /**
          * Monta da query
          */
-        $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;  
-        
+        $query = 'DELETE FROM ' . $this->tabela . ' WHERE ' . $where;
+
         $this->execute($query);
         return true;
     }
