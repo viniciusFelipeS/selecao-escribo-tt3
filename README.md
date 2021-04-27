@@ -12,13 +12,15 @@ https://getcomposer.org
 
 #Utilizando o XAMPP, clone o repositório na pasta \xampp\htdocs
 git clone https://github.com/viniciusFelipeS/selecao-estribo-3
+cd selecao-estribo-3
 
 #Baixe as dependências
 composer install
 
 #Importe o banco de dados localizado na pasta sql
+
 #Configure a conexão com o Banco de dados com as definições do seu sistema localizado no arquivo .env
-DB_NAME...
+DB_HOST, DB_NAME...
 
 #Altere o path do site para o nome da pasta principal no arquivo .env
 URL_PATH
